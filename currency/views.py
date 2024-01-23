@@ -7,4 +7,7 @@ from .serializers import CurrencySerializer
 
 class CurrencyView(viewsets.ModelViewSet):
     serializer_class = CurrencySerializer
-    queryset = Currency.objects.all()
+
+    def get_queryset(self):
+        return Currency.objects.all().order_by('-date')[:10]
+
