@@ -87,20 +87,12 @@ DATABASES = {
         'NAME': os.getenv("DB_NAME", default='db.sqlite3'),
         'USER': os.getenv("DB_USER", default='postgres'),
         'PASSWORD': os.getenv("DB_PASSWORD", default='postgres'),
-        'HOST': os.getenv("DB_HOST", default='5432')
+        'HOST': os.getenv("DB_HOST", default='db'),
+        'PORT': os.getenv("DB_PORT", default='5432')
     }
 }
 
-DATABASES = {
-     'default': {
-         'ENGINE': os.getenv('DB_ENGINE', default='django.db.backends.sqlite3'),
-         'NAME': os.getenv('DB_NAME', default='db.sqlite3'),
-         'USER': os.getenv('POSTGRES_USER', default='postgres'),
-         'PASSWORD': os.getenv('POSTGRES_PASSWORD', default='postgres'),
-         'HOST': os.getenv('DB_HOST', default='localhost'),
-         'PORT': os.getenv('DB_PORT', default='5432')
-     }
- }
+
 
 
 # Password validation
@@ -124,8 +116,6 @@ AUTH_PASSWORD_VALIDATORS = [
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,
     'DEFAULT_PERMISSION_CLASSES': [
       'rest_framework.permissions.AllowAny',
     ]
