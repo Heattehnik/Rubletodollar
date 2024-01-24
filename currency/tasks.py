@@ -13,7 +13,7 @@ def process_cbr_request():
             xml_content = response.content
             parsed_xml = parse_xml(xml_content)
             process_parsed_info(parsed_xml)
-            return f"Курс валюты обновлён"
+            return "Курс валюты обновлён"
         else:
             return f"Ошибка при получении данных. Код ответа: {response.status_code}"
     except Exception as e:
