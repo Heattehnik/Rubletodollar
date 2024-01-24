@@ -11,18 +11,8 @@ class CurrencySerializer(serializers.ModelSerializer):
 
 
 class CombinedCurrencySerializer(serializers.Serializer):
-    latest_currency = serializers.SerializerMethodField()
-    last_10_requests = serializers.SerializerMethodField()
+    latest_currency = CurrencySerializer()
+    last_10_requests = CurrencySerializer(many=True)
 
     class Meta:
-        fields = ('latest_currency', 'last_10_currencies',)
-
-    def get_latest_currency(self, obj):
-        latest_currency = Currency.objects.latest('id')
-        serializer = CurrencySerializer(latest_currency)
-        return serializer.data
-
-    def get_last_10_requests(self, obj):
-        last_10_requests = Currency.objects.order_by('-id')[:10]
-        serializer = CurrencySerializer(last_10_requests, many=True)
-        return serializer.data
+        fields = ('latest_currency', 'last_10_requests',)
